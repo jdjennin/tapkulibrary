@@ -321,12 +321,14 @@
 	UIFont *font = [UIFont boldSystemFontOfSize:dateFontSize];
 	UIFont *font2 =[UIFont boldSystemFontOfSize:dotFontSize];
 	UIColor *color = [UIColor grayColor];
+    
+    NSInteger markCount = [marks count];
 	
 	if(firstOfPrev>0){
 		[color set];
 		for(int i = firstOfPrev;i<= lastOfPrev;i++){
 			r = [self rectForCellAtIndex:index];
-			if ([marks count] > 0)
+			if (markCount > 0 && index < markCount)
 				[self drawTileInRect:r day:i mark:[[marks objectAtIndex:index] boolValue] font:font font2:font2];
 			else
 				[self drawTileInRect:r day:i mark:NO font:font font2:font2];
@@ -342,7 +344,7 @@
 		r = [self rectForCellAtIndex:index];
 		if(today == i) [[UIColor whiteColor] set];
 		
-		if ([marks count] > 0) 
+		if (markCount > 0 && index < markCount)
 			[self drawTileInRect:r day:i mark:[[marks objectAtIndex:index] boolValue] font:font font2:font2];
 		else
 			[self drawTileInRect:r day:i mark:NO font:font font2:font2];
@@ -354,7 +356,7 @@
 	int i = 1;
 	while(index % 7 != 0){
 		r = [self rectForCellAtIndex:index] ;
-		if ([marks count] > 0) 
+		if (markCount > 0 && index < markCount)
 			[self drawTileInRect:r day:i mark:[[marks objectAtIndex:index] boolValue] font:font font2:font2];
 		else
 			[self drawTileInRect:r day:i mark:NO font:font font2:font2];
